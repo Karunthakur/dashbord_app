@@ -1,0 +1,36 @@
+@media (max-width:800px) {
+    .buttonModal {
+        display: flex;
+        justify-content: end;
+        position: fixed;
+        top: 54%;
+        left: 0px;
+        right: 80px;
+        bottom: 0px;
+    }
+}
+
+h2 {
+    position: relative;
+    font-size: 5rem;
+}
+
+h2::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background: hsl(200 100% 80%);
+    transform: scale(0);
+    transition: transform 0.3s ease;
+    z-index: -1;
+    transform-origin: left;
+}
+
+h2:hover::before{
+    transform: scale(1);
+    transform-origin: left;
+}
