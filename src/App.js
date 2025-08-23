@@ -14,6 +14,7 @@ const App = () => {
   const [state, setState] = useState(CNAPP_DASHBOARD_TREE);
   const [open, setOpen] = useState(false);
   const [openMenu, setOPenMenu] = useState(false)
+  const [searchVal, setSearchVal] = useState('');
   const [id, setId] = useState(0)
 
 
@@ -38,7 +39,10 @@ const App = () => {
         <Navbar
           data={state}
           setState={setState}
-          style={{ background: colorBgContainer }} />
+          style={{ background: colorBgContainer }}
+          searchVal={searchVal}
+          setSearchVal={setSearchVal}
+        />
         <div className="flex justify-between items-center mb-4">
           <h1 className="text-2xl font-bold">CNAPP DASHBOARD</h1>
           <div className="flex gap-2">
@@ -69,7 +73,10 @@ const App = () => {
           state={state}
           setState={setState}
           setOpen={setOpen}
-          openAddWidget={openAddWidget} />
+          openAddWidget={openAddWidget}
+          searchVal={searchVal}
+          setSearchVal={setSearchVal}
+        />
         {open &&
           <Modal
             setOpen={setOpen}

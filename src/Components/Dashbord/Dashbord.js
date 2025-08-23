@@ -7,7 +7,7 @@ import { PlusOutlined, CloseOutlined } from "@ant-design/icons";
 const Pie_Chart = React.lazy(() => import('./Pie'));
 const Progress_Bar = React.lazy(() => import("./Progres"));
 
-const Dashboard = ({ setOpen, setState, state, openAddWidget }) => {
+const Dashboard = ({ setOpen, setState, state, openAddWidget, searchVal }) => {
     const delet_Widget = (data, id) => {
         const updateData = data.reduce((acc, el) => {
             if (el.id !== id) {
@@ -40,7 +40,9 @@ const Dashboard = ({ setOpen, setState, state, openAddWidget }) => {
                             {data.category === "CSPM Executive Dashboard" &&
                                 <>
                                     {
-                                        data.children.map((data) => (
+                                        data.children.filter((w) =>
+                                            w.widget_name?.toLowerCase().includes(searchVal?.toLowerCase())
+                                        ).map((data) => (
                                             <div key={data.id} className="p-4">
                                                 <Card hoverable className="flex w-96 h-52 border-4">
                                                     <span className="flex justify-between -m-4 font-normal" style={{ width: "76%" }}>
@@ -73,7 +75,9 @@ const Dashboard = ({ setOpen, setState, state, openAddWidget }) => {
                         </>
                         <>
                             {data.category === "CWPP Dashboard:" &&
-                                <>{data.children.map((data) => (
+                                <>{data.children.filter((w) =>
+                                    w.widget_name?.toLowerCase().includes(searchVal?.toLowerCase())
+                                ).map((data) => (
                                     <>
                                         <div key={data.id} className="p-4">
                                             <Card hoverable className="flex w-96 h-52 border-4">
@@ -108,7 +112,9 @@ const Dashboard = ({ setOpen, setState, state, openAddWidget }) => {
                             {data.category === "Registry Scan" &&
                                 <>
                                     {
-                                        data.children.map((data) => (
+                                        data.children.filter((w) =>
+                                            w.widget_name?.toLowerCase().includes(searchVal?.toLowerCase())
+                                        ).map((data) => (
                                             <div key={data.id} className="p-4">
                                                 <Card hoverable className="flex w-96 h-52 border-4">
                                                     <span className="flex justify-between -m-4 font-normal" style={{ width: "110%" }}>

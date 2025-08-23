@@ -3,24 +3,7 @@ import { Input, Menu } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import PropTypes from "prop-types";
 
-export default function Navbar({ data, setState, isInline }) {
-    const [searchVal, setSearchVal] = useState('');
-    const newTreeSearch = (data, value = "") => {
-        const updateData = data.filter(function Search(el) {
-            if (el.widget_name?.toLowerCase().includes(value?.toLowerCase())) return true;
-            if (Array.isArray(el?.children)) {
-                return (el.children = el.children.filter(Search)).length;
-            }
-        })
-        return updateData;
-    }
-
-    const searchFilter = (e) => {
-        const value = e.target.value;
-        setSearchVal(value);
-        setState(newTreeSearch(data, value))
-    }
-
+export default function Navbar({ data, setState, isInline, searchVal, setSearchVal }) {
     const items = [
         {
             label: "Home",
@@ -55,7 +38,7 @@ export default function Navbar({ data, setState, isInline }) {
                     <Input
                         size="small"
                         prefix={<SearchOutlined />}
-                        onChange={searchFilter}
+                        onChange={(e) => setSearchVal(e.target.value)}
                         value={searchVal}
                         type="search"
                         disableUnderline
