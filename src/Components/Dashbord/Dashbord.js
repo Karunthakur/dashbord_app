@@ -8,22 +8,18 @@ const Pie_Chart = React.lazy(() => import('./Pie'));
 const Progress_Bar = React.lazy(() => import("./Progres"));
 
 const Dashboard = ({ setOpen, setState, state, openAddWidget, searchVal }) => {
-    const delet_Widget = (data, id) => {
-        const updateData = data.reduce((acc, el) => {
-            if (el.id !== id) {
-                const updateEl = { ...el };
-                if (Array.isArray(updateEl.children)) {
-                    updateEl.children = delet_Widget(updateEl.children, id)
-                }
-                acc.push(updateEl);
+     const Data_Delete = (data, id) => {
+        return data.filter((array) => {
+            if (id === array.id) return false;
+            if (Array.isArray(array.children)) {
+               return array.children = Data_Delete(array.children, id);
             }
-            return acc;
-        }, [])
-        return updateData;
+            return true;
+        });
     }
 
     const handleDelete = (id) => {
-        setState((prev) => delet_Widget(prev, id));
+        setState((prev) => Data_Delete(prev, id));
         setOpen(false);
     }
 
@@ -168,3 +164,4 @@ Dashboard.propTypes = {
 }
 
 export default Dashboard;
+
